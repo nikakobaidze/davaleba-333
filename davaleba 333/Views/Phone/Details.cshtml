@@ -1,0 +1,21 @@
+﻿@model Phone
+
+@{
+    ViewData["Title"] = "Phone Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h3>Name: @Model.Name</h3>
+    <p>Price: @Model.Price</p>
+    <form method="post" action="@Url.Action("AddToCart", "Phone",new { id = Model.ID })">
+        <input type="hidden" name="phoneId" value="@Model.ID" />
+        <button type="submit" class="btn btn-primary">Add to Cart</button>
+    </form>
+   @* <form method="post" action="@Url.Action("AddToCart", "Phone")">
+        <input type="hidden" name="phoneId" value="@Model.ID" />
+        <button type="submit" class="btn btn-primary">Add to Cart</button>
+    </form>*@
+
+</div>

@@ -1,0 +1,54 @@
+﻿@{
+    @model PhoneViewModel
+
+    @using davaleba_333.Controllers
+
+
+    ViewData["Title"] = "Phone Page";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form method="get" action="@Url.Action("Index")">
+    <input type="text" name="search" value="@Model.Search" placeholder="Search by Name">
+    <button type="submit">Search</button>
+</form>
+<div>
+    Sort by:
+    <a href="@Url.Action("Index", new { page = Model.CurrentPage, TotalPages = Model.TotalPages, search = Model.Search, sortOrder = "price_asc" })">Price Ascending</a> |
+    <a href="@Url.Action("Index", new { page = Model.CurrentPage, TotalPages = Model.TotalPages, search = Model.Search, sortOrder = "price_desc" })">Price Descending</a>
+</div>
+
+@foreach (var item in Model.Phones)
+{
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@item.Name</h5>
+            <p class="card-text">price is @item.Price</p>
+            <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-primary">Details</a>
+        </div>
+    </div>
+}
+
+<div>
+    @if (Model.CurrentPage > 1)
+    {
+        <a href="@Url.Action("Index",new {page=Model.CurrentPage-1})">Previous</a>
+    }
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <span>@i</span>
+        }
+        else
+        {
+            <a href="@Url.Action("Index",new {page=i})">@i</a>
+        }
+    }
+    @if (Model.CurrentPage < Model.TotalPages)
+    {
+        <a href="@Url.Action("Index",new {page=Model.CurrentPage-1})">Previous</a>
+    }
+</div>
+

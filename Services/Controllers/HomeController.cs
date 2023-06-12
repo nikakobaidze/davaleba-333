@@ -1,8 +1,8 @@
-﻿using davaleba_333.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Services.Models;
 using System.Diagnostics;
 
-namespace davaleba_333.Controllers
+namespace Services.Controllers
 {
     public class HomeController : Controller
     {
@@ -19,22 +19,6 @@ namespace davaleba_333.Controllers
         }
 
         public IActionResult Privacy()
-        {
-            return View();
-        }
-        public IActionResult Login()
-        {
-            return View();
-        }
-        public IActionResult Phone()
-        {
-            return View();
-        }
-        public IActionResult Phones()
-        {
-            return View();
-        }
-        public IActionResult Accessory()
         {
             return View();
         }

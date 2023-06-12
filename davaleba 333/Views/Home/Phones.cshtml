@@ -1,0 +1,27 @@
+﻿@*@{
+    ViewData["Title"] = "Phones Page";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>APhone1 Page</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var phone in Model.Phones)
+        {
+            <tr>
+                <td>@phone.ID</td>
+                <td>@phone.Name</td>
+                <td>@phone.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+*@

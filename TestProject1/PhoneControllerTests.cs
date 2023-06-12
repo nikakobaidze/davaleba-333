@@ -27,7 +27,7 @@ namespace TestProject1
         public void GetPhones_ReturnsListOfPhones()
         {
             // Arrange
-            var phones = new List<Phone> { new Phone { ID= 1, Name = "Phone 1", Price = 100 } };
+            var phones = new List<Phone> { new Phone { ID = 1, Name = "Phone 1", Price = 100 } };
             _mockDbContext.Setup(x => x.Phones).Returns((Microsoft.EntityFrameworkCore.DbSet<Phone>)phones.AsQueryable());
 
             // Act

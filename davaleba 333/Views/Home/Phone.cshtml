@@ -1,6 +1,94 @@
 ﻿@{
+    @model PhoneViewModel
+
+    @using davaleba_333.Controllers
+
+
     ViewData["Title"] = "Phone Page";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Phone Page.</p>
+<form action="/Phone/Index" method="get">
+    <input type="text" name="searchTerm" placeholder="Search by Name">
+    <button type="submit">Search</button>
+</form>
+@*<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var phone in Model.Phones)
+        {
+            <tr>
+                <td>@phone.ID</td>
+                <td>@phone.Name</td>
+                <td>@phone.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>*@
+@foreach (var item in Model.Phones)
+{
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@item.Name</h5>
+            <p class="card-text">price is @item.Price</p>
+            <a href="#" class="btn btn-primary">Details</a>
+        </div>
+    </div>
+}
+
+<div>
+    @if (Model.CurrentPage > 1)
+    {
+        <a href="@Url.Action("Phone",new {page=Model.CurrentPage-1})">Previous</a>
+    }
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <span>@i</span>
+        }
+        else
+        {
+            <a href="@Url.Action("Phone",new {page=i})">@i</a>
+        }
+    }
+    @if (Model.CurrentPage < Model.TotalPages)
+    {
+        <a href="@Url.Action("Phone",new {page=Model.CurrentPage-1})">Previous</a>
+    }
+</div>
+
+
+@*<p>Phone Page.</p>*@
+
+@*<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    </div>*@
